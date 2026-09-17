@@ -12,25 +12,22 @@ I'm a student at Babson College concentrating in Consulting and Entrepreneurship
 
 ## Skills & Tools
 
-**Languages**
+**Comfortable with**
 
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![SQL](https://img.shields.io/badge/SQL-4479A1?style=for-the-badge&logo=postgresql&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![Markdown](https://img.shields.io/badge/Markdown-000000?style=for-the-badge&logo=markdown&logoColor=white)
 
-**Libraries**
+**Learning this semester**
 
-![pandas](https://img.shields.io/badge/pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)
-![NumPy](https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white)
-![scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)
-![Matplotlib](https://img.shields.io/badge/Matplotlib-11557C?style=for-the-badge&logo=python&logoColor=white)
-![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=for-the-badge&logo=jupyter&logoColor=white)
 
 **Tools**
 
 ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
 ![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)
-![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=for-the-badge&logo=jupyter&logoColor=white)
 ![VS Code](https://img.shields.io/badge/VS%20Code-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white)
 
 ---
@@ -40,8 +37,9 @@ I'm a student at Babson College concentrating in Consulting and Entrepreneurship
 ```
 OIM3641-classwork-charles/
 ├── README.md               # Overview of the repo (this file)
-├── requirements.txt        # Python dependencies
+├── pyproject.toml          # Project config and dependencies
 ├── .gitignore              # Files and folders Git should ignore
+├── main.py                 # Entry point
 │
 ├── in-class-activities/    # Weekly in-class exercises
 │   ├── activity-01/
@@ -56,8 +54,7 @@ OIM3641-classwork-charles/
 │   └── project-name/
 │       ├── data/           # Raw and cleaned datasets
 │       ├── notebooks/      # Jupyter notebooks for exploration
-│       ├── src/            # Reusable Python scripts and functions
-│       └── app.py          # Streamlit app (if applicable)
+│       └── src/            # Reusable scripts and functions
 │
 └── data/                   # Shared datasets used across assignments
 ```
@@ -70,14 +67,14 @@ Each assignment folder contains its own notebook or script plus any data it need
 
 **1. Clone the repository**
 
-```bash
+```
 git clone https://github.com/732198/OIM3641-classwork-charles.git
 cd OIM3641-classwork-charles
 ```
 
 **2. Create and activate a virtual environment**
 
-```bash
+```
 # macOS / Linux
 python3 -m venv venv
 source venv/bin/activate
@@ -89,21 +86,18 @@ venv\Scripts\activate
 
 **3. Install dependencies**
 
-```bash
-pip install -r requirements.txt
+```
+pip install -e .
 ```
 
 **4. Run the code**
 
-```bash
+```
 # Open notebooks
 jupyter notebook
 
 # Run a Python script
 python path/to/script.py
-
-# Launch a Streamlit app
-streamlit run projects/project-name/app.py
 ```
 
 ---
