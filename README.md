@@ -6,7 +6,7 @@ Coursework, in-class activities, and projects for **OIM 3641**, organized as a w
 
 ## About Me
 
-I'm a student at Babson College concentrating in Consulting and Entrepreneurship, and the Co-Founder and CEO of [Persephone's Basket](https://persephonesbasket.com), an agtech startup building solar-powered LoRa sensor networks and an AI agronomy assistant for vineyards and specialty crop farms. I'm interested in how data turns into better business decisions, from product strategy to client recommendations, and this repo tracks how I'm building those technical skills.
+I'm a student at Babson College concentrating in Consulting and Entrepreneurship, and the Co-Founder and CEO of [Persephone's Basket](https://www.persephonesbasket.com/), an agtech startup building solar-powered LoRa sensor networks and an AI agronomy assistant for vineyards and specialty crop farms. I'm interested in how data turns into better business decisions, from product strategy to client recommendations, and this repo tracks how I'm building those technical skills.
 
 ---
 
@@ -71,7 +71,7 @@ Each assignment folder contains its own notebook or script plus any data it need
 **1. Clone the repository**
 
 ```bash
-git clone https://github.com/[YOUR-USERNAME]/OIM3641-classwork-charles.git
+git clone https://github.com/732198/OIM3641-classwork-charles.git
 cd OIM3641-classwork-charles
 ```
 
@@ -110,12 +110,10 @@ streamlit run projects/project-name/app.py
 
 ## Contact & Connect
 
-[![LinkedIn]([https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/[YOUR-LINKEDIN]](https://www.linkedin.com/in/changbokaizhang))
-[![Website][(https://img.shields.io/badge/Persephone's%20Basket-2E7D32?style=for-the-badge&logo=googlechrome&logoColor=white)](https://persephonesbasket.com)](https://www.persephonesbasket.com/)
-[![GitHub]([https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/[YOUR-USERNAME])](https://github.com/732198)
-[![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:[YOUR-EMAIL])
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/changbokaizhang/)
+[![Website](https://img.shields.io/badge/Persephone's%20Basket-2E7D32?style=for-the-badge&logo=googlechrome&logoColor=white)](https://www.persephonesbasket.com/)
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/732198)
 
-- **LinkedIn:** [linkedin.com/in/[YOUR-LINKEDIN]](https://www.linkedin.com/in/[YOUR-LINKEDIN])
-- **Website:** [persephonesbasket.com](https://persephonesbasket.com)
-- **Portfolio:** [Add a link to other work, or delete this line]
-- **Email:** [YOUR-EMAIL]
+- **LinkedIn:** [linkedin.com/in/changbokaizhang](https://www.linkedin.com/in/changbokaizhang/)
+- **Website:** [persephonesbasket.com](https://www.persephonesbasket.com/)
+- **GitHub Portfolio:** [github.com/732198](https://github.com/732198)
