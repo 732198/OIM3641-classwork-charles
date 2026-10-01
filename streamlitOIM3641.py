@@ -3,6 +3,7 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 import yfinance as yf
+from narwhals import dataframe
 
 END = date.today()
 START = date.today() - timedelta(days=365)
@@ -13,18 +14,16 @@ st.title("Stock Analysis")
 
 st.sidebar.title("Input")
 ticker = st.sidebar.text_input ("Error stock ticker symbol", value="AAPL")
-comparison_ticker = st.sidebar.text_input ("Comparison ticker symbol", value="SPY")
 col1, col2 = st.sidebar.columns(2)
-tab1, tab2, tab3 = st.tabs(["Stock 1", "Stock 2", "Comparison"])
 start_date = st.sidebar.date_input( "Start Date", START)
 end_date = st.sidebar.date_input( "End Date", END)
-
 mv_avg = st.sidebar.slider("Moving Average",
                            min_value = 0,
                            max_value = 100,
                            value = 50,
                            step = 1)
-run_analysis = st.sidebar.button("Run Analysis")
+run_analysis = st.sidebar.button("Run Analysis"
+                                 , type = "primary")
 
 def get_stock_data(ticker, start_date, end_date):
 
@@ -40,26 +39,53 @@ def get_stock_data(ticker, start_date, end_date):
 
 
 if run_analysis:
-    get_stock_data(ticker, start_date, end_date)
-    if get_stock_data(ticker, start_date, end_date) is None:
-        st.error("Stock data not available")
-        st.stop()
-    if comparison_ticker is None:
-        st.error("Comparison ticker not available")
-        st.stop()
-    df["normalized_close"] = (df["Close"] / df["Close"].iloc[0]) * 100
-    comparison_df["normalized_close"] = (comparison_df["Close"] / comparison_df["Close"].iloc[0]) * 100
+    with st.spinner(f"Fetching {ticker} data..."):
+        df, msg = get_stock_data(ticker, start_date, end_date)
+        if df is not None:
+            st.sidebar.success(msg)
+        else:
+            st.sidebar.error(msg)
+            st.stop()
+        tab1, tab2, tab3 = st.tabs(["Chart", "Statistics", "Raw Data"])
+        df['MA'] = df['Close'].rolling(window=mv_avg).mean()
+        df['pct_chg'] = df.Close.pct_change()
+        tab1, tab2, tab3 = st.tabs(["Chart", "Statistics", "Raw Data"])
 
-with tab3:
-    fig = px.line(title=f"{ticker} vs {comparison_ticker} Performance (Base 100)")
-    fig.add_scatter(x=df.index, y=df["normalized_close"], name=ticker)
-    fig.add_scatter(x=comparison_df.index, y=comparison_df["normalized_close"], name=comparison_ticker)
-    st.plotly_chart(fig)
+        with tab1:
+            st.subheader(f"{ticker} Price Analysis")
+            col1, col2, col3 = st.columns(3)
+            col1.metric("Last Price", f"{df.Close.iloc[-1]:.2f}")
+            col2.metric("Cum. Change", f"{df.Close.iloc[-1]/df.Close.iloc[0]-1:.2%}")
+            col3.metric("Trading Days", f"{df.Close.count()}")
+            fig = px.line(df, y=["Close", "MA"])
+            fig.update_layout(hovermode='x unified')
+            st.plotly_chart(fig, use_container_width=True)
 
-    summary = pd.DataFrame({
-        "Ticker": [ticker, comparison_ticker],
-        "Min": [df["normalized_close"].min(), comparison_df["normalized_close"].min()],
-        "Max": [df["normalized_close"].max(), comparison_df["normalized_close"].max()],
-        "Final": [df["normalized_close"].iloc[-1], comparison_df["normalized_close"].iloc[-1]],
-    })
-    st.dataframe(summary)
+        with tab2:
+            st.subheader(f"{ticker} Summary Statistics")
+            col1, col2 = st.columns(2)
+            with col1:
+                st.write("**Daily Change Stats**")
+                summary = df["pct_chg"].describe()
+                st.dataframe(summary)
+            with col2:
+                st.write("**Price Stats**")
+                price_stats = pd.DataFrame({
+                    'Metric':['High', 'Low', 'Mean', 'Volatility'],
+                    'Values' :[
+                        f"{df.Close.max():.2f}",
+                        f"{df.Close.min():.2f}",
+                        f"{df.Close.mean():.2f}",
+                        f"{df.Close.std():.2f}"
+                    ]
+                })
+                st.dataframe(price_stats)
+
+        with tab3:
+            st.subheader(f"{ticker} Raw Data")
+            csv = df.to_csv()
+            st.download_button(
+                "Download Raw Data",
+                csv,
+                file_name=f"{ticker}Raw_Data.csv",
+            mime="text/csv",)
